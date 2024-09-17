@@ -3,5 +3,9 @@ import { useDelay } from "@/hooks/useDelay";
 export default async function Home() {
   await useDelay(2000);
 
-  return <main className="h-full w-full">home</main>;
+  return (
+    <>
+      <main className=" w-full h-full pt-20">main</main>
+    </>
+  );
 }

@@ -7,7 +7,7 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <section className="w-full h-full flex items-center flex-col">
+      <section className="container mx-auto h-full flex items-center flex-col max-sm:px-3">
         {children}
       </section>
     </>
