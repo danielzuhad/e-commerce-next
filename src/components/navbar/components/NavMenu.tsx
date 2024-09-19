@@ -19,6 +19,7 @@ import {
 import NavLinkList from "./NavLinkList";
 import { usePathname } from "next/navigation";
 import NavLink from "./NavLink";
+import Link from "next/link";
 
 const NavMenu = () => {
   const { isSignedIn, user, isLoaded } = useUser();
@@ -74,7 +75,9 @@ const NavMenu = () => {
           <DropdownMenuContent>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/profile">Profile</Link>
+            </DropdownMenuItem>
             <DropdownMenuItem className="mb-5">Dashboard</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem

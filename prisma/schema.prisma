@@ -13,23 +13,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Dashboard {
-  id           String   @id @default(uuid())
-  ownerClerkId String // Clerk User ID
-  name         String
-  description  String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  // Relasi
-  products Product[]
-  sales    Sale[]
-}
-
 model Product {
   id          String   @id @default(uuid())
+  userId      String
   image       String?
-  dashboardId String
   name        String
   description String?
   price       Decimal  @db.Decimal(10, 2)
@@ -38,32 +25,40 @@ model Product {
   updatedAt   DateTime @updatedAt
 
   // Relasi
-  dashboard  Dashboard   @relation(fields: [dashboardId], references: [id])
   orderItems OrderItem[]
   cartItems  CartItem[]
 }
 
 model CartItem {
-  id          String   @id @default(uuid())
-  clerkUserId String // Clerk User ID
-  productId   String
-  quantity    Int      @default(1)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(uuid())
+  userId    String // Clerk User ID
+  productId String
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relasi
   product Product @relation(fields: [productId], references: [id])
 }
 
+enum OrderStatus {
+  PENDING
+  PAID
+  SHIPPED
+  DELIVERED
+  CANCELED
+}
+
 model Order {
-  id          String   @id @default(uuid())
-  clerkUserId String // Clerk User ID
-  total       Decimal  @db.Decimal(10, 2)
-  status      String   @default("pending") // Status: pending, paid, shipped, delivered, etc.
-  createdAt   DateTime @default(now())
+  id        String      @id @default(uuid())
+  userId    String // Clerk User ID
+  total     Decimal     @db.Decimal(10, 2)
+  status    OrderStatus @default(PENDING) // Enum untuk status pesanan
+  createdAt DateTime    @default(now())
 
   // Relasi
   orderItems OrderItem[]
+  purchase   Purchase?
 }
 
 model OrderItem {
@@ -79,18 +74,21 @@ model OrderItem {
 }
 
 model Sale {
-  id          String   @id @default(uuid())
-  dashboardId String
-  totalSales  Decimal  @db.Decimal(10, 2)
-  createdAt   DateTime @default(now())
+  id         String   @id @default(uuid())
+  userId     String
+  totalSales Decimal  @db.Decimal(10, 2)
+  createdAt  DateTime @default(now())
 
   // Relasi
-  dashboard Dashboard @relation(fields: [dashboardId], references: [id])
 }
 
 model Purchase {
   id             String   @id @default(uuid())
-  clerkUserId    String // Clerk User ID
+  userId         String // Clerk User ID
   totalPurchases Decimal  @db.Decimal(10, 2)
+  orderId        String?  @unique // Relasi opsional ke Order
   createdAt      DateTime @default(now())
+
+  // Relasi
+  order Order? @relation(fields: [orderId], references: [id])
 }
