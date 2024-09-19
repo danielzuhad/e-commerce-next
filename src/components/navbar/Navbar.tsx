@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="w-screen fixed top-0 h-20 flex items-center">
-        <div className="container mx-auto max-sm:px-3 flex items-center justify-between h-full">
+        <div className="container mx-auto max-sm:px-3 flex items-center justify-between h-full lg:max-w-screen-xl">
           {/* Icon & links */}
           <div className="flex items-center h-full">
             <a href="/" className="text-xl font-bold hover:cursor-pointer">

@@ -1,11 +1,16 @@
-import { useDelay } from "@/hooks/useDelay";
+"use client";
 
-export default async function Home() {
-  await useDelay(2000);
+import { trpc } from "../server/client";
+
+export default function Home() {
+  const data = trpc.getData.useQuery();
 
   return (
     <>
-      <main className=" w-full h-full pt-20">main</main>
+      <main className=" w-full h-full pt-20">
+        <p>test</p>
+        {data.data?.data}
+      </main>
     </>
   );
 }

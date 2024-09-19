@@ -5,6 +5,7 @@ import Layout from "@/layout/Layout";
 import Navbar from "@/components/navbar/Navbar";
 import { ClerkLoading, ClerkProvider } from "@clerk/nextjs";
 import LoadingPage from "@/components/loading/LoadingPage";
+import TrpcProvider from "@/providers/TrpcProvider";
 
 export const metadata: Metadata = {
   title: "E-Commerce App",
@@ -32,8 +33,11 @@ export default function RootLayout({
           <ClerkLoading>
             <LoadingPage />
           </ClerkLoading>
-          <Navbar />
-          <Layout>{children}</Layout>
+
+          <TrpcProvider>
+            <Navbar />
+            <Layout>{children}</Layout>
+          </TrpcProvider>
         </body>
       </html>
     </ClerkProvider>

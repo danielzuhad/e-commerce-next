@@ -77,7 +77,12 @@ const NavMenu = () => {
             <DropdownMenuItem>Profile</DropdownMenuItem>
             <DropdownMenuItem className="mb-5">Dashboard</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-destructive focus:bg-destructive/70 focus:text-destructive-foreground">
+            <DropdownMenuItem
+              onClick={
+                isSignedIn ? () => signOut({ redirectUrl: "/" }) : () => {}
+              }
+              className="text-destructive focus:bg-destructive/70 focus:text-destructive-foreground"
+            >
               Sign Out
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -127,7 +132,9 @@ const NavMenu = () => {
                 href={!isSignedIn ? "/sign-in" : ""}
                 icon={<LogOut {...iconStyle} />}
                 link="Sign Out"
-                onClick={isSignedIn ? () => signOut() : () => {}}
+                onClick={
+                  isSignedIn ? () => signOut({ redirectUrl: "/" }) : () => {}
+                }
               />
             </div>
           </SheetContent>

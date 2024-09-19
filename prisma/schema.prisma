@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Dashboard {
+  id           String   @id @default(uuid())
+  ownerClerkId String // Clerk User ID
+  name         String
+  description  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relasi
+  products Product[]
+  sales    Sale[]
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  image       String?
+  dashboardId String
+  name        String
+  description String?
+  price       Decimal  @db.Decimal(10, 2)
+  stock       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relasi
+  dashboard  Dashboard   @relation(fields: [dashboardId], references: [id])
+  orderItems OrderItem[]
+  cartItems  CartItem[]
+}
+
+model CartItem {
+  id          String   @id @default(uuid())
+  clerkUserId String // Clerk User ID
+  productId   String
+  quantity    Int      @default(1)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relasi
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Order {
+  id          String   @id @default(uuid())
+  clerkUserId String // Clerk User ID
+  total       Decimal  @db.Decimal(10, 2)
+  status      String   @default("pending") // Status: pending, paid, shipped, delivered, etc.
+  createdAt   DateTime @default(now())
+
+  // Relasi
+  orderItems OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  productId String
+  quantity  Int
+  price     Decimal @db.Decimal(10, 2)
+
+  // Relasi
+  order   Order   @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Sale {
+  id          String   @id @default(uuid())
+  dashboardId String
+  totalSales  Decimal  @db.Decimal(10, 2)
+  createdAt   DateTime @default(now())
+
+  // Relasi
+  dashboard Dashboard @relation(fields: [dashboardId], references: [id])
+}
+
+model Purchase {
+  id             String   @id @default(uuid())
+  clerkUserId    String // Clerk User ID
+  totalPurchases Decimal  @db.Decimal(10, 2)
+  createdAt      DateTime @default(now())
+}
