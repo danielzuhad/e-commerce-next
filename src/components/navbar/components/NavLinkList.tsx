@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
-import { NAVBAR_LINKS } from "./constants";
+import { NAVBAR_LINKS } from "../constants";
 import NavLink from "./NavLink";
 
 type NavLinkListProp = {

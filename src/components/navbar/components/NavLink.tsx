@@ -23,7 +23,7 @@ const NavLink = ({ href, icon, link, className }: NavLinkProps) => {
       <Link
         href={href}
         className={cn(
-          "flex text-muted-foreground/50  items-center gap-x-2 hover:text-foreground transition-all",
+          "flex text-muted-foreground/50  items-center font-light gap-x-2 hover:text-foreground transition-all",
           pathname === href && "text-foreground font-medium",
           className
         )}

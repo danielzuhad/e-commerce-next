@@ -8,18 +8,10 @@ import { useClerk, useUser } from "@clerk/nextjs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import NavLinkList from "./NavLinkList";
 import { usePathname } from "next/navigation";
 import NavLink from "./NavLink";
-import Link from "next/link";
+import NavDropdownMenu from "./NavDropdownMenu";
 
 const NavMenu = () => {
   const { isSignedIn, user, isLoaded } = useUser();
@@ -53,44 +45,19 @@ const NavMenu = () => {
     <>
       {/* Desktop */}
       <div className="max-sm:hidden flex items-center h-full">
-        <div className="">
-          <ShoppingCart
-            {...iconStyle}
-            className="w-5 h-5 hover:cursor-pointer"
-          />
-        </div>
+        <ShoppingCart {...iconStyle} className="w-5 h-5 hover:cursor-pointer" />
 
         <Separator orientation="vertical" className="mx-3 h-[50%]" />
 
         <p className="text-sm max-md:hidden mr-2">{user.firstName}</p>
 
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Avatar className=" w-7 h-7 hover:cursor-pointer">
-              <AvatarImage src={user.imageUrl} />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-          </DropdownMenuTrigger>
-
-          <DropdownMenuContent>
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href="/profile">Profile</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="mb-5">Dashboard</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={
-                isSignedIn ? () => signOut({ redirectUrl: "/" }) : () => {}
-              }
-              className="text-destructive focus:bg-destructive/70 focus:text-destructive-foreground"
-            >
-              Sign Out
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <NavDropdownMenu
+          isSignedIn={isSignedIn}
+          user={user}
+          signOut={signOut}
+        />
       </div>
+      {/* Desktop ENd */}
 
       {/* Mobile */}
       <div className="sm:hidden">
@@ -143,6 +110,7 @@ const NavMenu = () => {
           </SheetContent>
         </Sheet>
       </div>
+      {/* Mobile EJnd */}
     </>
   );
 };

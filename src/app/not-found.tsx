@@ -1,7 +1,7 @@
 const NotFound = () => {
   return (
     <>
-      <section>NotFound</section>
+      <div className="w-full h-full pt-20">not found</div>
     </>
   );
 };

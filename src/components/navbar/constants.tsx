@@ -13,3 +13,18 @@ export const NAVBAR_LINKS = [
     icon: <PackageSearch {...iconStyle} />,
   },
 ];
+
+export const MENU_LINKS = [
+  {
+    name: "Dashboard",
+    href: "/dashboard",
+  },
+  {
+    name: "Profile",
+    href: "/profile",
+  },
+  {
+    name: "Sign Out",
+    href: "",
+  },
+];
