@@ -1,5 +1,6 @@
 "use client";
 
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -27,23 +28,22 @@ const CardWrapper = ({
 
   return (
     <>
-      <div
+      <Card
         className={cn(
-          "rounded-md max-sm:max-w-[250px] w-full bg-white p-3 h-[250px] sm:h-full border shadow-sm border-muted flex flex-col  ",
+          "max-sm:max-w-[250px] w-full h-[250px] sm:h-full flex flex-col  ",
           className
         )}
       >
-        <p
-          onClick={handleNavigation}
-          className={cn(
-            "w-full rounded-t-md font-semibold text-lg",
-            href === "hover:cursor-pointer"
-          )}
-        >
-          {title}
-        </p>
-        <div className="w-full h-full">{children}</div>
-      </div>
+        <CardHeader className="py-4">
+          <CardTitle
+            onClick={handleNavigation}
+            className={cn("w-full   text-lg", href === "hover:cursor-pointer")}
+          >
+            {title}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="w-full h-full">{children}</CardContent>
+      </Card>
     </>
   );
 };
