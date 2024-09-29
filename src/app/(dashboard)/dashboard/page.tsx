@@ -1,11 +1,14 @@
 import CardWrapper from "@/components/dasboard/components/CardWrapper";
 import LayoutDashboard from "@/components/dasboard/components/LayoutDashboard";
+import ProfileDash from "@/components/dasboard/components/ProfileDash";
 
 const Dashboard = () => {
   return (
     <LayoutDashboard>
       {/* upper */}
-      <CardWrapper>Profile</CardWrapper>
+      <CardWrapper title="Profile">
+        <ProfileDash />
+      </CardWrapper>
       <CardWrapper>Income</CardWrapper>
       <CardWrapper>Expense</CardWrapper>
       <CardWrapper className="lg:col-span-1">Cart</CardWrapper>

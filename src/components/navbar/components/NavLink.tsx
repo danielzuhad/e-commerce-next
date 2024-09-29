@@ -19,18 +19,16 @@ const NavLink = ({ href, icon, link, className }: NavLinkProps) => {
   const pathname = usePathname();
 
   return (
-    <>
-      <Link
-        href={href}
-        className={cn(
-          "flex text-muted-foreground/50  items-center font-light gap-x-2 hover:text-foreground transition-all",
-          pathname === href && "text-foreground font-medium",
-          className
-        )}
-      >
-        {link} {icon}
-      </Link>
-    </>
+    <Link
+      href={href}
+      className={cn(
+        "flex text-muted-foreground/50  items-center font-light gap-x-2 hover:text-foreground transition-all",
+        pathname === href && "text-foreground font-medium",
+        className
+      )}
+    >
+      {link} {icon}
+    </Link>
   );
 };
 

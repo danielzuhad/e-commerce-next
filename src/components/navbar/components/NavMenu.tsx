@@ -42,7 +42,7 @@ const NavMenu = () => {
   }
 
   return (
-    <>
+    <div>
       {/* Desktop */}
       <div className="max-sm:hidden flex items-center h-full">
         <ShoppingCart {...iconStyle} className="w-5 h-5 hover:cursor-pointer" />
@@ -79,7 +79,7 @@ const NavMenu = () => {
                 <p className="line-clamp-1 font-semibold text-sm">
                   {user.fullName}
                 </p>
-                <p className="line-clamp-1 text-muted-foreground">
+                <p className="line-clamp-1 text-muted-foreground font-light">
                   {user.primaryEmailAddress?.emailAddress}
                 </p>
               </div>
@@ -87,9 +87,9 @@ const NavMenu = () => {
 
             {/* Links */}
             <div className="py-5 flex flex-col items-start gap-5 border-y border-muted-foreground/50 px-3">
-              <NavLinkList className="flex flex-row-reverse" />
+              <NavLinkList className="flex flex-row-reverse text-foreground" />
               <NavLink
-                className="flex-row-reverse"
+                className="flex-row-reverse text-foreground"
                 href={"/profile"}
                 icon={<User {...iconStyle} />}
                 link="Profile"
@@ -98,7 +98,7 @@ const NavMenu = () => {
 
             <div className="w-full px-3 mt-5 flex items-start ">
               <NavLink
-                className="flex-row-reverse text-destructive"
+                className="flex-row-reverse text-destructive "
                 href={!isSignedIn ? "/sign-in" : ""}
                 icon={<LogOut {...iconStyle} />}
                 link="Sign Out"
@@ -111,7 +111,7 @@ const NavMenu = () => {
         </Sheet>
       </div>
       {/* Mobile EJnd */}
-    </>
+    </div>
   );
 };
 
