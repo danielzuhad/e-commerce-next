@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { SignOut, UserResource } from "@clerk/types";
+
 import { ChevronUp } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -32,14 +33,14 @@ const NavDropdownMenu = ({
       <DropdownMenu onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <div className="flex items-center gap-x-1 hover:cursor-pointer">
-            <Avatar className=" w-7 h-7 ">
+            <Avatar className="h-7 w-7">
               <AvatarImage src={user?.imageUrl} />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
 
             <ChevronUp
               size={14}
-              className={cn(" transition-all", open && "rotate-180")}
+              className={cn("transition-all", open && "rotate-180")}
             />
           </div>
         </DropdownMenuTrigger>
@@ -65,7 +66,7 @@ const NavDropdownMenu = ({
               <DropdownMenuItem key={i}>
                 <Link href={link.href}>{link.name}</Link>
               </DropdownMenuItem>
-            )
+            ),
           )}
         </DropdownMenuContent>
       </DropdownMenu>

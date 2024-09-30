@@ -27,7 +27,7 @@ const Dashboard = () => {
 
       <CardWrapper
         title="Transaction"
-        className="sm:row-span-2 sm:row-start-2 lg:row-span-1"
+        className="max-sm:h-[500px] sm:row-span-2 sm:row-start-2 lg:row-span-1"
       >
         <TransactionDash />
       </CardWrapper>

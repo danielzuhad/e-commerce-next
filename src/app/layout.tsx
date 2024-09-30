@@ -28,7 +28,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${poppins.variable} antialiased relative bg-background h-screen max-w-screen w-full`}
+          className={`${poppins.variable} max-w-screen relative h-screen w-full bg-background antialiased`}
         >
           <ClerkLoading>
             <LoadingPage />

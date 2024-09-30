@@ -10,6 +10,7 @@ interface CardWrapperProps {
   className?: string;
   href?: string;
   title?: string;
+  classNameContent?: string;
 }
 
 const CardWrapper = ({
@@ -17,6 +18,7 @@ const CardWrapper = ({
   className,
   href,
   title,
+  classNameContent,
 }: CardWrapperProps) => {
   const router = useRouter();
 
@@ -30,7 +32,7 @@ const CardWrapper = ({
     <>
       <Card
         className={cn(
-          "flex h-[250px] w-full flex-col max-sm:max-w-[250px] sm:h-full",
+          "flex h-[250px] w-full flex-col overflow-hidden max-sm:max-w-[250px] sm:h-full",
           className,
         )}
       >
@@ -42,7 +44,9 @@ const CardWrapper = ({
             {title}
           </CardTitle>
         </CardHeader>
-        <CardContent className="h-full w-full">{children}</CardContent>
+        <CardContent className={cn("h-full w-full", classNameContent)}>
+          {children}
+        </CardContent>
       </Card>
     </>
   );
