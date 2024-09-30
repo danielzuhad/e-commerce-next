@@ -16,7 +16,7 @@ const NavLinkList = ({ className }: NavLinkListProp) => {
   }
 
   return (
-    <>
+    <div className="flex flex-col gap-5 items-start sm:items-center sm:flex-row">
       {NAVBAR_LINKS.map((link, i) => (
         <NavLink
           key={i}
@@ -26,7 +26,7 @@ const NavLinkList = ({ className }: NavLinkListProp) => {
           className={className}
         />
       ))}
-    </>
+    </div>
   );
 };
 

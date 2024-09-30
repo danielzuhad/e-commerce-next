@@ -30,19 +30,19 @@ const CardWrapper = ({
     <>
       <Card
         className={cn(
-          "max-sm:max-w-[250px] w-full h-[250px] sm:h-full flex flex-col  ",
-          className
+          "flex h-[250px] w-full flex-col max-sm:max-w-[250px] sm:h-full",
+          className,
         )}
       >
         <CardHeader className="py-4">
           <CardTitle
             onClick={handleNavigation}
-            className={cn("w-full   text-lg", href === "hover:cursor-pointer")}
+            className={cn("w-full text-lg", href === "hover:cursor-pointer")}
           >
             {title}
           </CardTitle>
         </CardHeader>
-        <CardContent className="w-full h-full">{children}</CardContent>
+        <CardContent className="h-full w-full">{children}</CardContent>
       </Card>
     </>
   );

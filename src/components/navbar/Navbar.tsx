@@ -3,8 +3,8 @@ import NavMenu from "./components/NavMenu";
 
 const Navbar = () => {
   return (
-    <nav className="w-screen fixed top-0 h-20 flex items-center bg-white/20 backdrop-blur-sm">
-      <div className="container mx-auto max-sm:px-3 flex items-center justify-between h-full lg:max-w-screen-xl">
+    <nav className="w-screen fixed top-0 z-50 h-20 flex items-center bg-white/20 backdrop-blur-lg">
+      <div className="container mx-auto max-sm:px-3 flex items-center justify-between h-full lg:max-w-screen-xl ">
         {/* Icon & links */}
         <div className="flex items-center h-full">
           <a

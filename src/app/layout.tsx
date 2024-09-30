@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Layout from "@/layout/Layout";
 import Navbar from "@/components/navbar/Navbar";
-import { ClerkLoading, ClerkProvider } from "@clerk/nextjs";
+import { ClerkLoaded, ClerkLoading, ClerkProvider } from "@clerk/nextjs";
 import LoadingPage from "@/components/loading/LoadingPage";
 import TrpcProvider from "@/providers/TrpcProvider";
 
@@ -34,10 +34,12 @@ export default function RootLayout({
             <LoadingPage />
           </ClerkLoading>
 
-          <TrpcProvider>
-            <Navbar />
-            <Layout>{children}</Layout>
-          </TrpcProvider>
+          <ClerkLoaded>
+            <TrpcProvider>
+              <Navbar />
+              <Layout>{children}</Layout>
+            </TrpcProvider>
+          </ClerkLoaded>
         </body>
       </html>
     </ClerkProvider>

@@ -9,8 +9,8 @@ const LayoutDashboard = ({ children, className }: LayoutDashboardProps) => {
   return (
     <main
       className={cn(
-        "w-full h-full gap-4 grid grid-cols-1  pb-8 sm:grid-cols-3 xl:grid-cols-4 pt-24  xl:grid-rows-[40%_60%] place-items-center max-sm:overflow-auto",
-        className
+        "grid h-full w-full grid-flow-row-dense grid-cols-1 place-items-center gap-4 pb-8 pt-24 sm:grid-cols-2 md:grid-cols-3 md:grid-rows-[auto_1fr] lg:grid-cols-4",
+        className,
       )}
     >
       {children}
